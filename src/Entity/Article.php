@@ -1,11 +1,11 @@
-<?
+<?php
 
 namespace App\Entity;
 
 class Article {
     private string $title;
     private string $subtitle;
-    private DateTime $createdAt;
+    private \DateTime $createdAt;
     private string $author;
     private string $body;
     private string $image;
@@ -18,7 +18,7 @@ class Article {
         return $this->title;
     }
 
-    function SetSubtitle(string $title) : void {
+    function SetSubtitle(string $subtitle) : void {
         $this->subtitle = $subtitle;
     }
 
@@ -26,11 +26,11 @@ class Article {
         return $this->subtitle;
     }
 
-    function SetCreatedAt(DateTime $createdAt) : void {
+    function SetCreatedAt(\DateTime $createdAt) : void {
         $this->createdAt = $createdAt;
     }
 
-    function GetCreatedAt() : DateTime {
+    function GetCreatedAt() : \DateTime {
         return $this->createdAt;
     }
 
