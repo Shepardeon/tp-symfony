@@ -24,6 +24,8 @@ class ArticleFixtures extends Fixture
             $article->setBody($faker->paragraph(5));
             $article->setImage("none.png");
             $manager->persist($article);
+
+            $this->addReference("Article" + $i, $article);
         }
 
         $manager->flush();
