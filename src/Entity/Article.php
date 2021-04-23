@@ -2,59 +2,125 @@
 
 namespace App\Entity;
 
-class Article {
-    private string $title;
-    private string $subtitle;
-    private \DateTime $createdAt;
-    private string $author;
-    private string $body;
-    private string $image;
+use App\Repository\ArticleRepository;
+use Doctrine\ORM\Mapping as ORM;
 
-    function SetTitle(string $title) : void {
-        $this->title = $title;
+/**
+ * @ORM\Entity(repositoryClass=ArticleRepository::class)
+ */
+class Article
+{
+    /**
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $title;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $subtitle;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $createdAt;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $author;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $body;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $image;
+
+    public function getId(): ?int
+    {
+        return $this->id;
     }
 
-    function GetTitle() : string {
+    public function getTitle(): ?string
+    {
         return $this->title;
     }
 
-    function SetSubtitle(string $subtitle) : void {
-        $this->subtitle = $subtitle;
+    public function setTitle(string $title): self
+    {
+        $this->title = $title;
+
+        return $this;
     }
 
-    function GetSubtitle() : string {
+    public function getSubtitle(): ?string
+    {
         return $this->subtitle;
     }
 
-    function SetCreatedAt(\DateTime $createdAt) : void {
-        $this->createdAt = $createdAt;
+    public function setSubtitle(string $subtitle): self
+    {
+        $this->subtitle = $subtitle;
+
+        return $this;
     }
 
-    function GetCreatedAt() : \DateTime {
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
         return $this->createdAt;
     }
 
-    function SetAuthor(string $author) : void {
-        $this->author = $author;
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
     }
 
-    function GetAuthor() : string {
+    public function getAuthor(): ?string
+    {
         return $this->author;
     }
 
-    function SetBody(string $body) : void {
-        $this->body = $body;
+    public function setAuthor(string $author): self
+    {
+        $this->author = $author;
+
+        return $this;
     }
 
-    function GetBody() : string {
+    public function getBody(): ?string
+    {
         return $this->body;
     }
 
-    function SetImage(string $image) : void {
-        $this->image = $image;
+    public function setBody(string $body): self
+    {
+        $this->body = $body;
+
+        return $this;
     }
 
-    function GetImage() : string {
+    public function getImage(): ?string
+    {
         return $this->image;
+    }
+
+    public function setImage(string $image): self
+    {
+        $this->image = $image;
+
+        return $this;
     }
 }
