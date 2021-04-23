@@ -21,7 +21,7 @@ class ArticleFixtures extends Fixture
             $article->setSubtitle($faker->sentence());
             $article->setCreatedAt(new \DateTime($faker->date()));
             $article->setAuthor($faker->name());
-            $article->setBody($faker->text(100));
+            $article->setBody($faker->paragraph(5));
             $article->setImage("none.png");
             $manager->persist($article);
         }

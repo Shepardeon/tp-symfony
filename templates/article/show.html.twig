@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ArticleController!{% endblock %}
+
+{% block body %}
+<article>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <h1>{{ article.getTitle() }}</h1>
+                <h3>{{ article.getSubtitle() }}</h3>
+                {{ article.getBody() }}
+            </div>
+        </div>
+    </div>
+</article>
+
+<hr>
+{% endblock %}

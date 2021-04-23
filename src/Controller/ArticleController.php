@@ -7,8 +7,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 use App\Repository\ArticleRepository;
+use App\Entity\Article;
 
-class HomeController extends AbstractController
+class ArticleController extends AbstractController
 {
     private $articleRepository;
 
@@ -18,24 +19,12 @@ class HomeController extends AbstractController
     }
 
     /**
-     * @Route("/", name="home")
+     * @Route("/article/{id}", name="article")
      */
-    public function index(): Response
+    public function show(Article $article)
     {
-
-        $articles = $this->articleRepository->findLast(4);
-
-        return $this->render('home/index.html.twig', [
-            'articles' => $articles
+        return $this->render('article/show.html.twig', [
+            'article' => $article,
         ]);
-    }
-
-
-    /**
-     * @Route("/hello/{name}", name="hello_name")
-     */
-    public function helloName($name)
-    {
-        return new Response('Hello ' . $name);
     }
 }
