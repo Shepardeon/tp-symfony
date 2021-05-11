@@ -1,2 +1,2 @@
 # tp-symfony
-TP Symfony
+TP Symfony - Thomas De Maen
