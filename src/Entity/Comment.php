@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
 use App\Repository\CommentRepository;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -19,11 +21,18 @@ class Comment
 
     /**
      * @ORM\Column(type="string", length=255)
+     * 
+     * @Assert\NotNull()
+     * @Assert\Length(max = 255)
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * 
+     * @Assert\NotNull()
+     * @Assert\Email()
+     * @Assert\Length(min = 3, max = 255)
      */
     private $email;
 
@@ -34,6 +43,8 @@ class Comment
 
     /**
      * @ORM\Column(type="text")
+     * 
+     * @Assert\NotNull()
      */
     private $comment;
 

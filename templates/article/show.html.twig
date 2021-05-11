@@ -19,7 +19,7 @@
 
 <div class="container">
     <div class="row">
-        <h3 class="col-lg-8 col-md-10 mx-auto">2 Comments</h3>
+        <h3 class="col-lg-8 col-md-10 mx-auto">{{ article.comments.count }} Comments</h3>
     </div>
     
     <!-- Comments Form -->
@@ -27,41 +27,25 @@
         <div class="card my-4">
             <h5 class="card-header">Leave a Comment:</h5>
             <div class="card-body">
-                <form>
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input id="name" class="form-control form-control-sm" type="text">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input id="email" class="form-control form-control-sm" type="email">
-                    </div>
-                    <div class="form-group">
-                        <label for="comment">Comment</label>
-                        <textarea id="comment" class="form-control form-control-sm" rows="3"></textarea>
-                    </div>
+                {{ form_start(commentForm) }}
+                    {{ form_row(commentForm.name) }}
+                    {{ form_row(commentForm.email) }}
+                    {{ form_row(commentForm.comment) }}
                     <button type="submit" class="btn btn-secondary">Submit</button>
-                </form>
+                {{ form_end(commentForm) }}
             </div>
         </div>
     </div>
 
+    {% for comment in article.comments %}
     <div class="row">
         <div class="media mb-4 mt-4 col-lg-8 col-md-10 mx-auto">
             <div class="media-body">
-                <h5 class="mt-0">John Doe <small>2020-03-19</small></h5>
-                <blockquote>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</blockquote>
+                <h5 class="mt-0">{{ comment.getName() }} <small>{{ comment.getCreatedAt()|date(null, "Europe/Paris") }}</small></h5>
+                <blockquote>{{ comment.getComment() }}</blockquote>
             </div>
         </div>
     </div>
-
-    <div class="row">
-        <div class="media mb-4 mt-4 col-lg-8 col-md-10 mx-auto">
-            <div class="media-body">
-                <h5 class="mt-0">Foo Bar <small>2020-04-19</small></h5>
-                <blockquote>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</blockquote>
-            </div>
-        </div>
-    </div>
+    {% endfor %}
 </div>
 {% endblock %}

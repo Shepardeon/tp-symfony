@@ -15,7 +15,18 @@ class CommentFixture extends Fixture
         $faker = Faker\Factory::create();
 
         for ($i = 0; $i < 10; $i++) {
-            $comment = new Comment();
+            $article = $this->getReference("Article" . $i);
+            for ($j = 0; $j < rand(1, 4); $j++) {
+                $comment = new Comment();
+                $comment->setName($faker->name());
+                $comment->setEmail($faker->email());
+                $comment->setCreatedAt(new \DateTime($faker->date()));
+                $comment->setComment($faker->text());
+                $comment->setArticle($article);
+                $article->addComment($comment);
+
+                $manager->persist($comment);
+            }
         }
 
         $manager->flush();
